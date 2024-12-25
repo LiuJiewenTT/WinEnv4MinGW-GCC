@@ -9,10 +9,14 @@ call :which "mingw32-make.exe"
 if ERRORLEVEL 1 exit /b 1
 mklink "%~dp0bin\make.exe" "%which_retv%"
 
+goto :eof
+
+
 :which
     set "which_retv=%~$PATH:1"
     if not defined which_retv (
         echo ERROR: %1 not found in PATH
         exit /b 1
     )
+    exit /b 0
 goto :eof
