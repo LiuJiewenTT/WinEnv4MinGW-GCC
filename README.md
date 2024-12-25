@@ -15,3 +15,16 @@ To deactivate the environment, simply run `env\deactivate.bat` in the command pr
 The script `env\deinit.bat` will remove the `env\bin\` directory from disk.
 The script `env\reinit.bat` will re-initialize the environment.
 
+## Notes
+
+- If you're working on a disk with different drive letter from time to time, you may need to run `env\reinit.bat` every time it changes.
+- If you're working on multiple MinGW-GCC versions, you may need to run `env\reinit.bat` every time you switch to a new version.
+
+## Working Principle
+
+- Script `env\init.bat` will create a new directory `env\bin\` and use `which` and `mklink` to create symbolic links to the MinGW-GCC executables.
+- Script `env\activate.bat` will add the `env\bin\` directory to the PATH environment variable.
+- Script `env\deactivate.bat` will remove the `env\bin\` directory from the PATH environment variable.
+- Script `env\deinit.bat` will remove the `env\bin\` directory from disk.
+- Script `env\reinit.bat` will delete the `env\bin\` directory's contents and re-initialize the environment.
+

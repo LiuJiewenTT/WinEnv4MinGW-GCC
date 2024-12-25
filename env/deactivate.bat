@@ -6,4 +6,5 @@ if exist "%~dp0env_name.txt" (
 )
 set "prompt_prefix=(%env_name%) "
 set "new_prompt=!PROMPT:%prompt_prefix%=!"
-endlocal && set "PROMPT=%new_prompt%"
+set "new_path=!PATH:%~dp0bin;=!"
+endlocal && set "PROMPT=%new_prompt%" && set "PATH=%new_path%"

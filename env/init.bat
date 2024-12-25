@@ -6,8 +6,13 @@ if exist "%~dp0bin\make.exe" (
     del /F /Q "%~dp0bin\make.exe"
 )
 call :which "mingw32-make.exe"
+if ERRORLEVEL 1 exit /b 1
 mklink "%~dp0bin\make.exe" "%which_retv%"
 
 :which
     set "which_retv=%~$PATH:1"
+    if not defined which_retv (
+        echo ERROR: %1 not found in PATH
+        exit /b 1
+    )
 goto :eof
